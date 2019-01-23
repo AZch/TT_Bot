@@ -35,7 +35,7 @@ http = "http"
 serverIP_Port = ""
 
 
-token = '684761241:AAHanKSvHWV81b00IgAV3HKws9PTQbL7JnA'
+token = ''
 URL = 'https://api.telegram.org/bot' + token + '/'
 def parseText(text):
     pattern = r'/\w+'
@@ -57,29 +57,26 @@ def index():
             #print("get user id")
             user_id = req['message']['from']['id']
         except:
-            #if (message == '/me'):
-            #    send_message(chat_id=281265894, text=str(chat_id)) # i'm
-            #    send_message(chat_id=281265894, text="from: " + getNamePrint(chat_id, user_id)) # i'm
             return 'hello g'
         #print(listOfGame)
         command = message
         print("у комманд")
         if (command == '/me'):
-            send_message(chat_id=281265894, text=str(chat_id)) # i'm
-            send_message(chat_id=281265894, text="from: " + getNamePrint(chat_id, user_id)) # i'm
+            send_message(chat_id=0, text=str(chat_id)) # i'm
+            send_message(chat_id=0, text="from: " + getNamePrint(chat_id, user_id)) # i'm
         elif (command == '/game'):
             #global listOfGame
             send_message(chat_id=chat_id, text=Print.getStrAboutGame(listOfGame=listOfGame))
-        elif (chat_id==281265894 and len(command.split('?')) > 0 and command.split('?')[0] == '/addshort'):
-            send_message(chat_id=281265894, text="add: " +command.split('?')[1]) # i'm
+        elif (chat_id==0 and len(command.split('?')) > 0 and command.split('?')[0] == '/addshort'):
+            send_message(chat_id=0, text="add: " +command.split('?')[1]) # i'm
             listOfMemberShort.append(int(command.split('?')[1]))
             send_message(chat_id=int(command.split('?')[1]), text="вы добавлены в рассылку!")
-        elif (chat_id==281265894 and len(command.split('?')) > 0 and command.split('?')[0] == '/addall'):
-            send_message(chat_id=281265894, text="add: " +command.split('?')[1]) # i'm
+        elif (chat_id==0 and len(command.split('?')) > 0 and command.split('?')[0] == '/addall'):
+            send_message(chat_id=0, text="add: " +command.split('?')[1]) # i'm
             listOfMemberAll.append(int(command.split('?')[1]))
             send_message(chat_id=int(command.split('?')[1]), text="вы добавлены в рассылку с полной отдачей!")
-        elif (chat_id==281265894 and len(command.split('?')) > 0 and command.split('?')[0] == '/addstrat'):
-            send_message(chat_id=281265894, text="add: " +command.split('?')[1]) # i'm
+        elif (chat_id==0 and len(command.split('?')) > 0 and command.split('?')[0] == '/addstrat'):
+            send_message(chat_id=0, text="add: " +command.split('?')[1]) # i'm
             listOfMemberStrat.append(int(command.split('?')[1]))
             send_message(chat_id=int(command.split('?')[1]), text="вы добавлены в рассылку по стратам!")
         elif (command=='/all' and checkInStrat(chat_id)):
@@ -88,7 +85,7 @@ def index():
                 listOfMemberAll.append(chat_id)
                 send_message(chat_id=chat_id, text="вы добавлены в рассылку с полнйо отдачей!")
             except:
-                send_message(chat_id=281265894, text="alladd truble: " + str(chat_id)) # i'm
+                send_message(chat_id=0, text="alladd truble: " + str(chat_id)) # i'm
                 send_message(chat_id=chat_id, text="alladd truble please write @AZchDev") # i'm
         elif (command=='/strat' and checkInAll(chat_id)):
             try:
@@ -96,22 +93,22 @@ def index():
                 listOfMemberStrat.append(chat_id)
                 send_message(chat_id=chat_id, text="вы добавлены в рассылку по стратам!")
             except:
-                send_message(chat_id=281265894, text="stratadd truble: " + str(chat_id)) # i'm
-                send_message(chat_id=chat_id, text="stratadd truble please write @AZchDev") # i'm
-        elif (chat_id==281265894 and len(command.split('?')) > 0 and command.split('?')[0] == '/delshort'):
+                send_message(chat_id=0, text="stratadd truble: " + str(chat_id)) # i'm
+                send_message(chat_id=chat_id, text="stratadd truble please write @0") # i'm
+        elif (chat_id==0 and len(command.split('?')) > 0 and command.split('?')[0] == '/delshort'):
             try:
-                send_message(chat_id=281265894, text="del: " +command.split('?')[1]) # i'm
+                send_message(chat_id=0, text="del: " +command.split('?')[1]) # i'm
                 delFromShort(command.split('?')[1])
                 send_message(chat_id=int(command.split('?')[1]), text="вы удалены из ограниченной рассылки!")
             except:
-                send_message(chat_id=281265894, text="delshort truble: " + str(chat_id)) # i'm
-        elif (chat_id==281265894 and len(command.split('?')) > 0 and command.split('?')[0] == '/dellist'):
+                send_message(chat_id=0, text="delshort truble: " + str(chat_id)) # i'm
+        elif (chat_id==0 and len(command.split('?')) > 0 and command.split('?')[0] == '/dellist'):
             try:
-                send_message(chat_id=281265894, text="del: " +command.split('?')[1]) # i'm
+                send_message(chat_id=0, text="del: " +command.split('?')[1]) # i'm
                 delFromLists(command.split('?')[1])
                 send_message(chat_id=int(command.split('?')[1]), text="вы удалены из рассылки!")
             except:
-                send_message(chat_id=281265894, text="dellist truble: " + str(chat_id)) # i'm
+                send_message(chat_id=0, text="dellist truble: " + str(chat_id)) # i'm
         
 
 
@@ -167,7 +164,6 @@ def getNamePrint(chat_id, user_id):
                 return "%s" % (user['result']['user']['first_name'])
 
 def send_message(chat_id, text):
-    # https://api.telegram.org/bot503945314:AAqMC9y0tRho/sendMessage
     url = URL + 'sendMessage'
     answer = {'chat_id': chat_id, 'text': text}
     req = requests.post(url, json = answer)
@@ -175,18 +171,18 @@ def send_message(chat_id, text):
 
 def makelistOfMemberShort(listOfMemberShort):
 
-    listOfMemberShort.append(270749872) # радик м
-    listOfMemberShort.append(-1001258306501) # чат object'a
+    listOfMemberShort.append(0) 
+    listOfMemberShort.append()
 
     return listOfMemberShort
 
 def makelistOfMemberStratMore(listOfMemberStrat):
-    listOfMemberStrat.append(319201172) # obj3ct 
-    listOfMemberStrat.append(607415198) # валерий
+    listOfMemberStrat.append(0) 
+    listOfMemberStrat.append(0) 
     return listOfMemberStrat
 
 def makelistOfMemberAllMore(listOfMemberAll):
-    listOfMemberAll.append(281265894) # i'm
+    listOfMemberAll.append(0) 
     return listOfMemberAll
 
 
