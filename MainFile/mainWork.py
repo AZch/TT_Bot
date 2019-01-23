@@ -14,8 +14,8 @@ from Objects.SendEvent import SendEvent
 from Objects.DelGame import DelGame
 import requests
 
-proxies = {'http': 'https://telegram:telegram@lzpaq.tgproxy.me:443', 'https': 'https://telegram:telegram@lzpaq.tgproxy.me:443'}
-token = '684761241:AAHanKSvHWV81b00IgAV3HKws9PTQbL7JnA'
+proxies = {'http': '', 'https': ''}
+token = ''
 URL = 'https://api.telegram.org/bot' + token + '/'
 hand = 3.5
 
@@ -96,10 +96,7 @@ def makeFind(driver, stop, listOfGame, driverScoreTT, driverScoreLigaPro, que, d
                                             countLose += 1
                                             aboutStr = " - "
                                     strSend = "#TT" + str(event.countPrint) + aboutStr  + str(countWin) + "+ " + str(countLose) + "-"
-                                    #send_message(chat_id=281265894, text=str(countWin) + "+ " + str(countLose) + "-")
-                                    #send_message(chat_id=319201172, text=str(countWin) + "+ " + str(countLose) + "-")
-                                    #send_message(chat_id=270749872, text=str(countWin) + "+ " + str(countLose) + "-")
-                                    #send_message(chat_id=607415198, text=str(countWin) + "+ " + str(countLose) + "-")
+                                    
                                     sendGame(strToPrint=strSend, listOfMember=listOfMemberStrat)
                                     sendGame(strToPrint=strSend, listOfMember=listOfMemberAll)
                                     sendGame(strToPrint=strSend, listOfMember=listOfMemberShort)
@@ -171,8 +168,7 @@ def makeFind(driver, stop, listOfGame, driverScoreTT, driverScoreLigaPro, que, d
                                             strSimpleSend =strCountSend +  game.players[0] + corrStrOne + " - " + game.players[1] + "\n" + strPrint
                                             strSend += strPrint + "\n"
                                             strSend = strCountSend + strSend
-                                            #send_message(chat_id=270749872, text=strSimpleSend)
-                                            #send_message(chat_id=607415198, text=strSimpleSend)
+                                         
                                             sendGame(strToPrint=strSimpleSend, listOfMember=listOfMemberShort)
 
                                             strSend += strMeet
@@ -181,8 +177,7 @@ def makeFind(driver, stop, listOfGame, driverScoreTT, driverScoreLigaPro, que, d
                                             sendGame(strToPrint=strSend, listOfMember=listOfMemberStrat)
                                             sendGame(strToPrint=strSend, listOfMember=listOfMemberAll)
                                             countPrint += 1
-                                            #send_message(chat_id=281265894, text= strSend)
-                                            #send_message(chat_id=319201172, text= strSend)
+                                   
                                         else:
                                             strSend += strMeet
                                             listOfSendEvent.append(
@@ -210,7 +205,7 @@ def makeFind(driver, stop, listOfGame, driverScoreTT, driverScoreLigaPro, que, d
         except Exception as err:
             if (not isSendPr):
                 #print("problem main")
-                #send_message(chat_id=281265894, text=str(err))
+        
                 driver.get("https://betcity.ru/ru/live/table-tennis")
                 print(err)
                 isSendPr = True
